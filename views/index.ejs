@@ -1,506 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glow Organics | Clean Beauty</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@600&display=swap"
-        rel="stylesheet">
+    <title>Glow Organics | Beauty with Attitude</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-pink: #ff4d8d;
+            --soft-cream: #fffcf9;
+            --rich-black: #1a1a1a;
+            --muted-pink: #ffdce5;
+            --accent-purple: #8338ec;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: var(--rich-black);
+            background-color: var(--soft-cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Sassy Scrollbar --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--soft-cream); }
+        ::-webkit-scrollbar-thumb { background: var(--primary-pink); border-radius: 10px; }
+
+        /* --- Announcement --- */
+        .announcement-bar {
+            background-color: var(--rich-black);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(255, 252, 249, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-style: italic;
+            letter-spacing: -1px;
+            color: var(--rich-black);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--rich-black);
+            margin: 0 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--primary-pink); }
+
+        .nav-right i {
+            margin-left: 25px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-right i:hover { transform: translateY(-3px); color: var(--primary-pink); }
+
+        /* --- Hero --- */
+        .hero {
+            height: 90vh;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            align-items: center;
+            padding: 0 8%;
+            gap: 40px;
+        }
+
+        .hero-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            line-height: 0.9;
+            margin-bottom: 25px;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            max-width: 400px;
+            margin-bottom: 35px;
+            color: #555;
+        }
+
+        .hero-image {
+            height: 80%;
+            background: url('https://images.unsplash.com/photo-1596462502278-27bfad450216?auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 300px 300px 0 0;
+            box-shadow: 40px 40px 0 var(--muted-pink);
+        }
+
+        .btn-main {
+            padding: 18px 45px;
+            background: var(--rich-black);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-block;
+            transition: var(--transition);
+            border: 2px solid var(--rich-black);
+        }
+
+        .btn-main:hover {
+            background: transparent;
+            color: var(--rich-black);
+            transform: scale(1.05);
+        }
+
+        /* --- Categories --- */
+        .categories {
+            padding: 100px 8%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 50px;
+        }
+
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+        }
+
+        .cat-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            transition: var(--transition);
+            filter: grayscale(100%);
+        }
+
+        .cat-card:hover img {
+            filter: grayscale(0%);
+            transform: rotate(5deg) scale(1.1);
+            box-shadow: 0 20px 40px rgba(255, 77, 141, 0.2);
+        }
+
+        .cat-card p {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- Product Grid --- */
+        .products {
+            padding: 100px 8%;
+            background: white;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .p-img-container {
+            overflow: hidden;
+            border-radius: 20px;
+            background: var(--soft-cream);
+            margin-bottom: 20px;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .product-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .price {
+            font-weight: 300;
+            color: var(--primary-pink);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .add-btn {
+            width: 100%;
+            padding: 12px;
+            background: none;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .add-btn:hover {
+            background: var(--rich-black);
+            color: white;
+            border-color: var(--rich-black);
+        }
+
+        /* --- Philosophy --- */
+        .philosophy {
+            background: var(--muted-pink);
+            padding: 120px 8%;
+            text-align: center;
+            border-radius: 100px 100px 0 0;
+        }
+
+        .philosophy h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .philosophy p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--rich-black);
+            color: white;
+            padding: 60px 8%;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.6;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* Badge Styling */
+        .sassy-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--primary-pink);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            z-index: 10;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .hero { grid-template-columns: 1fr; text-align: center; height: auto; padding: 100px 5%; }
+            .hero-content h2 { font-size: 3rem; }
+            .hero-image { display: none; }
+            .nav-links { display: none; }
+        }
+    </style>
 </head>
-<style>
-    :root {
-        --primary-pink: #FF8FAB;
-        /* Soft Carnation Pink */
-        --deep-blush: #FB607F;
-        /* Deep Blush - Primary Action Color */
-        --soft-amber: #FFD166;
-        /* Accent 1 */
-        --vibrant-violet: #9D4EDD;
-        /* Accent 2 */
-        --text-dark: #333333;
-        --off-white: #FAFAFA;
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: 'Poppins', sans-serif;
-        color: var(--text-dark);
-        background-color: var(--off-white);
-    }
-
-    /* 1. Announcement Bar */
-    .announcement-bar {
-        background-color: var(--deep-blush);
-        color: white;
-        text-align: center;
-        padding: 8px;
-        font-size: 0.85rem;
-        letter-spacing: 0.5px;
-    }
-
-    /* 2. Navbar */
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 5%;
-        background: white;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-    }
-
-    .logo {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.8rem;
-        letter-spacing: 1px;
-        color: var(--deep-blush);
-    }
-
-    .nav-link {
-        text-decoration: none;
-        color: var(--text-dark);
-        margin-right: 20px;
-        font-size: 0.95rem;
-        font-weight: 500;
-    }
-
-    .nav-right i {
-        margin-left: 20px;
-        font-size: 1.1rem;
-        cursor: pointer;
-        color: #555;
-        transition: color 0.3s;
-    }
-
-    .nav-right i:hover {
-        color: var(--deep-blush);
-    }
-
-    .cart-icon {
-        display: inline-block;
-        position: relative;
-    }
-
-    .badge {
-        position: absolute;
-        top: -8px;
-        right: -10px;
-        background-color: var(--vibrant-violet);
-        color: white;
-        font-size: 0.7rem;
-        padding: 2px 6px;
-        border-radius: 50%;
-    }
-
-    /* 3. Hero Section */
-    .hero {
-        /* Using the direct Unsplash link + Pink overlay */
-        background: linear-gradient(to right, rgba(255, 255, 255, 0.9) 0%, rgba(255, 143, 171, 0.3) 100%),
-            url("https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA5L3Jhd3BpeGVsX29mZmljZV8zMV90b3Bfdmlld19tYWtlX3VwX2Nvc21ldGljc19wcm9kdWN0c19hZ2FpbnN0X18yMGUyMWVlYy0zNWFiLTRmNzQtYTk3ZC05ODEzYTU0MDFjZjRfMS5qcGc.jpg");
-
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 80vh;
-        display: flex;
-        align-items: center;
-        padding: 0 10%;
-    }
-
-    .hero-content {
-        max-width: 550px;
-    }
-
-    .hero h2 {
-        font-family: 'Playfair Display', serif;
-        font-size: 3.5rem;
-        line-height: 1.2;
-        margin-bottom: 15px;
-    }
-
-    .highlight {
-        color: var(--deep-blush);
-    }
-
-    .btn-primary {
-        display: inline-block;
-        margin-top: 25px;
-        padding: 12px 35px;
-        background-color: var(--deep-blush);
-        color: white;
-        text-decoration: none;
-        border-radius: 30px;
-        font-weight: 600;
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(251, 96, 127, 0.4);
-    }
-
-    /* 4. Categories (Updated for Images) */
-    .categories {
-        text-align: center;
-        padding: 80px 10%;
-    }
-
-    .categories h3 {
-        font-family: 'Playfair Display', serif;
-        font-size: 2rem;
-        margin-bottom: 40px;
-    }
-
-    .category-grid {
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        flex-wrap: wrap;
-    }
-
-    .cat-item p {
-        margin-top: 15px;
-        font-weight: 600;
-        color: #555;
-    }
-
-    /* Image Circle Styling */
-    .cat-circle {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        object-fit: cover;
-        /* Keeps the image circular without stretching */
-        border: 3px solid white;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s, border-color 0.3s;
-        cursor: pointer;
-    }
-
-    .cat-circle:hover {
-        transform: scale(1.1);
-        border-color: var(--primary-pink);
-    }
-
-    /* 5. Best Sellers (Updated for Product Images) */
-    .best-sellers {
-        padding: 60px 5%;
-        background-color: #fff;
-    }
-
-    .section-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 30px;
-        padding: 0 20px;
-    }
-
-    .section-header h3 {
-        font-family: 'Playfair Display', serif;
-        font-size: 2rem;
-    }
-
-    .view-all {
-        color: var(--deep-blush);
-        text-decoration: none;
-        font-weight: 600;
-        position: relative;
-    }
-
-    .view-all::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 2px;
-        bottom: -2px;
-        left: 0;
-        background-color: var(--deep-blush);
-        transform: scaleX(0);
-        transition: transform 0.3s;
-    }
-
-    .view-all:hover::after {
-        transform: scaleX(1);
-    }
-
-    .product-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 30px;
-    }
-
-    .product-card {
-        border: 1px solid #f0f0f0;
-        padding: 15px;
-        text-align: center;
-        position: relative;
-        border-radius: 12px;
-        transition: box-shadow 0.3s, transform 0.3s;
-        background: white;
-    }
-
-    .product-card:hover {
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
-        transform: translateY(-5px);
-    }
-
-    /* Product Image Styling */
-    .p-image {
-        width: 100%;
-        height: 250px;
-        object-fit: cover;
-        /* Ensures products fit the card perfectly */
-        border-radius: 8px;
-        margin-bottom: 15px;
-    }
-
-    .p-details h4 {
-        font-size: 1rem;
-        margin-bottom: 8px;
-        color: #444;
-    }
-
-    .p-details .price {
-        color: var(--deep-blush);
-        margin-bottom: 15px;
-        font-size: 1rem;
-        font-weight: 600;
-    }
-
-    .btn-secondary {
-        width: 100%;
-        padding: 10px;
-        background: white;
-        border: 1px solid var(--deep-blush);
-        color: var(--deep-blush);
-        font-weight: 600;
-        border-radius: 20px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .btn-secondary:hover {
-        background: var(--deep-blush);
-        color: white;
-    }
-
-    /* Badges */
-    .badge-new,
-    .badge-hot {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        padding: 5px 12px;
-        color: white;
-        font-size: 0.75rem;
-        font-weight: bold;
-        border-radius: 4px;
-        z-index: 10;
-    }
-
-    .badge-new {
-        background-color: var(--vibrant-violet);
-    }
-
-    .badge-hot {
-        background-color: var(--soft-amber);
-        color: #333;
-    }
-
-    /* 6. Philosophy Banner */
-    .philosophy {
-        background-color: var(--soft-amber);
-        /* Amber background */
-        padding: 80px 10%;
-        text-align: center;
-        margin-top: 80px;
-        border-radius: 20px 20px 0 0;
-        /* Slight curve at top */
-    }
-
-    .philosophy h3 {
-        font-family: 'Playfair Display', serif;
-        font-size: 2.2rem;
-        margin-bottom: 15px;
-        color: #333;
-    }
-
-    .icons {
-        margin-top: 30px;
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        font-weight: 600;
-        font-size: 1.1rem;
-    }
-
-    footer {
-        background: #1a1a1a;
-        color: #eee;
-        text-align: center;
-        padding: 30px;
-        margin-top: 0;
-        font-size: 0.9rem;
-    }
-</style>
-
 <body>
 
-    <body>
+    <div class="announcement-bar">
+        Free Shipping on Orders Above ₹999 • Limited Time Only
+    </div>
 
-        <div class="announcement-bar">
-            Free Shipping on Orders Above ₹999 | Use Code: <strong>GLOW10</strong>
+    <nav class="navbar">
+        <div class="nav-left nav-links">
+            <a href="#">Shop</a>
+            <a href="#">Story</a>
         </div>
+        <a href="#" class="logo">glow organics.</a>
+        <div class="nav-right">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-shopping-bag"></i>
+        </div>
+    </nav>
 
-        <nav class="navbar">
-            <div class="nav-left">
-                <i class="fas fa-bars mobile-menu"></i>
-                <a href="#" class="nav-link">Shop</a>
-                <a href="#" class="nav-link">About</a>
-                <a href="#" class="nav-link">Blog</a>
+    <header class="hero">
+        <div class="hero-content">
+            <h2>Beauty Without <br>the <span style="color: var(--primary-pink); font-style: italic;">B.S.</span></h2>
+            <p>High-performance formulas that actually treat your skin. No fillers, no toxins, just pure main-character energy.</p>
+            <a href="#" class="btn-main">Shop the Drop</a>
+        </div>
+        <div class="hero-image"></div>
+    </header>
+
+    <section class="categories">
+        <h3 class="section-title">The Lineup</h3>
+        <div class="cat-grid">
+            <div class="cat-card">
+                <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=400" alt="Lips">
+                <p>Lips</p>
+            </div>
+            <div class="cat-card">
+                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&w=400" alt="Face">
+                <p>Face</p>
+            </div>
+            <div class="cat-card">
+                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=400" alt="Eyes">
+                <p>Eyes</p>
+            </div>
+            <div class="cat-card">
+                <img src="https://images.unsplash.com/photo-1629198688000-71f23e745b6e?q=80&w=400" alt="Cheeks">
+                <p>Cheeks</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="products">
+        <h3 class="section-title" style="text-align: center;">Best Sellers</h3>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="sassy-badge">New Energy</div>
+                <div class="p-img-container">
+                    <img src="https://images.unsplash.com/photo-1629198688000-71f23e745b6e?q=80&w=500" alt="Blush">
+                </div>
+                <h4>Creme Blush</h4>
+                <p class="price">₹1,100</p>
+                <button class="add-btn">Add to Bag —</button>
             </div>
 
-            <div class="nav-center">
-                <h1 class="logo">GLOW ORGANICS</h1>
+            <div class="product-card">
+                <div class="p-img-container">
+                    <img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=500" alt="Foundation">
+                </div>
+                <h4>Skin Tint Foundation</h4>
+                <p class="price">₹1,650</p>
+                <button class="add-btn">Add to Bag —</button>
             </div>
 
-            <div class="nav-right">
-                <i class="fas fa-search"></i>
-                <i class="fas fa-user"></i>
-                <div class="cart-icon">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span class="badge">0</span>
+            <div class="product-card">
+                <div class="sassy-badge">Going Fast</div>
+                <div class="p-img-container">
+                    <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=500" alt="Kohl">
                 </div>
+                <h4>Smoked Violet Kohl</h4>
+                <p class="price">₹750</p>
+                <button class="add-btn">Add to Bag —</button>
             </div>
-        </nav>
+        </div>
+    </section>
 
-        <header class="hero">
-            <div class="hero-content">
-                <h2>The Future of <span class="highlight">Clean Beauty</span></h2>
-                <p>100% Vegetarian. Cruelty-Free. High Performance.</p>
-                <a href="#" class="btn-primary">Shop Now</a>
-            </div>
-        </header>
+    <section class="philosophy">
+        <h3>Skin First. Ego Later.</h3>
+        <p>We bridge the gap between heavy makeup and skincare. Our products breathe, so you can too.</p>
+        <div style="font-weight: 600; letter-spacing: 2px;">
+            🌿 VEGAN • 🐰 CRUELTY FREE • 💧 HYDRATING
+        </div>
+    </section>
 
+    <footer>
+        <p>&copy; 2026 GLOW ORGANICS. MADE FOR THOSE WHO DARE TO SHINE.</p>
+    </footer>
 
-        <section class="categories">
-            <h3>Shop By Category</h3>
-            <div class="category-grid">
-                <div class="cat-item">
-                    <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=400&auto=format&fit=crop"
-                        alt="Lips" class="cat-circle">
-                    <p>Lips</p>
-                </div>
-
-                <div class="cat-item">
-                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80"
-                        alt="Face" class="cat-circle">
-                    <p>Face</p>
-                </div>
-
-                <div class="cat-item">
-                    <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=400&auto=format&fit=crop"
-                        alt="Eyes" class="cat-circle">
-                    <p>Eyes</p>
-                </div>
-
-                <div class="cat-item">
-                    <img src="https://media.istockphoto.com/id/2221616770/photo/glow-tinted-nude-red-blush-stick-in-pastel-green-casing-with-glossy-pale-pink-cap-3d.jpg?s=1024x1024&w=is&k=20&c=TN9iJ3hC73L96s6znfF1vUfwLQjEBHO6d8Al31lx_5o="
-                        alt="Cheeks" class="cat-circle">
-                    <p>Cheeks</p>
-                </div>
-
-                <div class="cat-item">
-                    <img src="https://images.unsplash.com/photo-1629198688000-71f23e745b6e?q=80&w=400&auto=format&fit=crop"
-                        alt="Sets" class="cat-circle">
-                    <p>Sets</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="best-sellers">
-            <div class="section-header">
-                <h3>Best Sellers</h3>
-                <a href="#" class="view-all">View All</a>
-            </div>
-
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="badge-new">New</div>
-                    <img src="https://images.unsplash.com/photo-1629198688000-71f23e745b6e?q=80&w=500&auto=format&fit=crop"
-                        alt="Blush" class="p-image">
-                    <div class="p-details">
-                        <h4>Creme Blush - Deep Rose</h4>
-                        <p class="price">₹1,100</p>
-                        <a href="https://www.amazon.in/Blusher-Pigmented-Long-lasting-Buildable-Blendable/dp/B0C6XL3MTT/ref=asc_df_B0C6XL3MTT?mcid=a1fbd8e874c33ac4828f52089ddef4d1&tag=googleshopdes-21&linkCode=df0&hvadid=709857154056&hvpos=&hvnetw=g&hvrand=2055899770880554100&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9075215&hvtargid=pla-2204688100223&psc=1&gad_source=1">  <button class="btn-secondary">Add to Cart</button></a>
-                       
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=500&auto=format&fit=crop"
-                        alt="Foundation" class="p-image">
-                    <div class="p-details">
-                        <h4>Skin Tint Foundation</h4>
-                        <p class="price">₹1,650</p>
-                        <a href="https://www.amazon.in/Maybelline-Poreless-Liquid-Foundation-Natural/dp/B087XG6B65/ref=asc_df_B087XG6B65?mcid=75261a0034a832ac8a499a980bc11d6c&tag=googleshopdes-21&linkCode=df0&hvadid=709857154056&hvpos=&hvnetw=g&hvrand=12315170522430971572&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9075215&hvtargid=pla-921414320579&psc=1&gad_source=1"><button class="btn-secondary">Add to Cart</button></a>
-                        
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="badge-hot">Hot</div>
-                    <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=500&auto=format&fit=crop"
-                        alt="Kohl" class="p-image">
-                    <div class="p-details">
-                        <h4>Smoked Violet Kohl</h4>
-                        <p class="price">₹750</p>
-                        <a href="https://www.amazon.in/Multifunctional-Brush-Bristles-Blending-Foundation/dp/B0CGLZSBVZ/ref=sr_1_2_sspa?crid=SBC7OV9VO5E2&dib=eyJ2IjoiMSJ9.AyyYgGRaiXeofAVnAXJ0nTt5wZm5WC0rWm0RY7AdOqGjjaUyNIViT0TT66oYRPkD8yOSv-7PsXaML-Y2Qrn19h4QxqcciH81XWwH39YsL1rVvmXOeYkg6EeY6jz9sWHnnQdS893tncGnU7cCsNVAub2V30485FtryxWExZKrzu4O3cENVlodtgAF-p2Qxk9vDo21RhLrMSC3YhjMg0mouRUotv3gsvlTznxWgY0kDq9HT_vyQdlgz7_Wv2K6oJG6dUkLYCuhdX-BRDFM0gPa5QN8uRp3GHV64NlPr5-ndBc.mSA-ruW0tyG4yLPXeYX5eouBfGbkAmOtZk8awNxfIoQ&dib_tag=se&keywords=smoked%2Bvelvet%2Bkohl%2Bbrush&qid=1771259314&s=beauty&sprefix=smoked%2Bvelvet%2Bkohl%2Bbrush%2Cbeauty%2C381&sr=1-2-spons&aref=3tbWTd3qgD&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1"> <button class="btn-secondary">Add to Cart</button></a>
-                        
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1599305090598-fe179d501227?q=80&w=500&auto=format&fit=crop"
-                        alt="Highlighter" class="p-image">
-                    <div class="p-details">
-                        <h4>Liquid Highlighter - Gold</h4>
-                        <p class="price">₹1,200</p>
-                        <a href="https://www.amazon.in/Beauty-Liquid-Highlighter-Makeup-Illuminating/dp/B07T2DSY48/ref=sr_1_1_sspa?crid=1YO4WLM1GNUTJ&dib=eyJ2IjoiMSJ9.nYphW-JU2iLjNpk4YBuDGRuj1qIZCvzOJgUPzHpCvdJAqsdI9Z1IcyBPvi9TWV8LJW92U-BUiofjECuILP1iPEAAi6WbhXFeQBFNyocPFmysqIOkZFY7sFW4bdBwY1u5d5iIclYovjXcM5TTzEEegBh27QPv-opHc_cjBY4s63AEWQe6EKMStxhEDDucCYsTElZf8zkpse4Gfp-Vdf-T6UlO-C4aNd9rP3UKWZgevJwTvNbYLL1qouIJLhyUTV3R-GNZRvRPV10oQcmISwSoYNoGOrN4sNCeEcUDmRQ9lLA.gP5f7r4aj89EkAmldbn_GPZnjPwDivEgsbLj0UCJMao&dib_tag=se&keywords=liquid+highlighter&qid=1771259359&s=beauty&sprefix=liquid+highli%2Cbeauty%2C411&sr=1-1-spons&aref=ZpA43rZfly&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1"> <button class="btn-secondary">Add to Cart</button>
-                       </a> 
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="philosophy">
-            <div class="content">
-                <h3>Why We Are Different</h3>
-                <p>We bridge the gap between heavy makeup and skincare. Our products breathe.</p>
-                <div class="icons">
-                    <span>🌿 Vegan</span>
-                    <span>🐰 Cruelty Free</span>
-                    <span>💧 Hydrating</span>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <p>&copy; 2026 Glow Organics. All rights reserved.</p>
-        </footer>
-
-    </body>
-
+</body>
 </html>
